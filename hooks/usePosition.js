@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 
-export const usePosition = (options = {}) => {
+export const usePosition = () => {
   // store location in state
   const [location, setLocation] = useState();
   // store error message in state
