@@ -13,7 +13,7 @@ Allows you to find out if a dark theme is activated in the system. It returns `t
 
 **Example**
 
-```javaScript
+```JSX
 import { useBrowserTheme } from "./hooks/useBrowserTheme";
 
 export default function App() {
@@ -38,7 +38,7 @@ Returns current date (year, mount, mount name, day, day name).
 
 **Example**
 
-```javaScript
+```JSX
 import { useDate } from "./hooks/useDate";
 
 export default function App() {
@@ -46,7 +46,7 @@ export default function App() {
   const date = useDate(false);
 
   return (
-    <div className={`App ${darkTheme ? "dark" : "light"}`}>
+    <div className="App">
       {date && (
         <h2>
           Year: {date.year},
@@ -70,7 +70,7 @@ Returns current time and the angle of analog clock arrows.
 
 **Example**
 
-```javaScript
+```JSX
 import { useTime } from "./hooks/useTime";
 
 export default function App() {
@@ -78,7 +78,7 @@ export default function App() {
   const time = useTime();
 
   return (
-    <div className={`App ${darkTheme ? "dark" : "light"}`}>
+    <div className="App">
       {time && (
         <h2>
           {time.hours}:{time.minutes}:{time.seconds}
@@ -95,7 +95,7 @@ Sends a request to access the location and returns the latitude and longitude.
 
 **Example**
 
-```javaScript
+```JSX
 import { usePosition } from "./hooks/usePosition";
 
 export default function App() {
@@ -103,7 +103,7 @@ export default function App() {
   const position = usePosition();
 
   return (
-    <div className={`App ${darkTheme ? "dark" : "light"}`}>
+    <div className="App">
       {position.location && (
         <>
           <h2>latitude: {position.location.latitude}</h2>
@@ -112,5 +112,38 @@ export default function App() {
       )}
     </div>
   );
+}
+```
+
+## useClickOutside 👆
+
+Allows you to tracks clicks outside the item to do something.
+
+| Argument |   Type   |       Description       |
+| -------- | :------: | :---------------------: |
+| ref      | useRef() | react link to your item |
+| callback | function |    callback function    |
+
+**Example**
+
+```JSX
+import React, { useRef } from "react";
+import { useClickOutside } from "way to useClickOutside";
+
+export const Dropdown = () => {
+ const [opened, setOpened] = useState(false);
+
+ const toggleOpened = () => {
+  setOpened(!opened)
+ }
+
+ //Click outside track
+ const menuRef = useRef();
+ useClickOutside(menuRef, toggleOpened);
+
+ return(
+  <button>{opened ? 'Close' : 'Open'} menu </button>
+  {opened && <div ref={menuRef}>Menu</div>}
+ )
 }
 ```
