@@ -119,10 +119,11 @@ export default function App() {
 
 Allows you to tracks clicks outside the item to do something.
 
-| Argument |   Type   |       Description       |
-| -------- | :------: | :---------------------: |
-| ref      | useRef() | react link to your item |
-| callback | function |    callback function    |
+| Argument |   Type   |            Description             |
+| -------- | :------: | :--------------------------------: |
+| ref      | useRef() |      react link to your item       |
+| callback | function |         callback function          |
+| enabled  | boolean  | optional argument (initial = true) |
 
 **Example**
 
@@ -139,7 +140,7 @@ export const Dropdown = () => {
 
  //Click outside track
  const menuRef = useRef();
- useClickOutside(menuRef, toggleOpened);
+ useClickOutside({ref: menuRef, callback: toggleOpened});
 
  return(
   <button>{opened ? 'Close' : 'Open'} menu </button>
